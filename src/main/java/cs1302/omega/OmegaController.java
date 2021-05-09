@@ -1,4 +1,4 @@
-package cs1302.omega;
+package omega;
 import javafx.scene.shape.Rectangle;
 
 public class OmegaController {
@@ -8,6 +8,9 @@ public class OmegaController {
     public static int XMAX = OmegaApp.XMAX;
     public static int[][] BOARD  = OmegaApp.BOARD ;
 
+    /**
+     * @param form
+     */
     public static void MoveRight(OmegaForm form) {
         if (form.a.getX() + MOVE <= XMAX - SIZE && form.b.getX() + MOVE <= XMAX - SIZE
                 && form.c.getX() + MOVE <= XMAX - SIZE && form.d.getX() + MOVE <= XMAX - SIZE) {
@@ -24,6 +27,9 @@ public class OmegaController {
         }
     }
 
+    /**
+     * @param form
+     */
     public static void MoveLeft(OmegaForm form) {
         if (form.a.getX() - MOVE >= 0 && form.b.getX() - MOVE >= 0 && form.c.getX() - MOVE >= 0
                 && form.d.getX() - MOVE >= 0) {
@@ -40,6 +46,9 @@ public class OmegaController {
         }
     }
 
+    /**
+     * @return
+     */
     public static OmegaForm makeRect() {
         int block = (int) (Math.random() * 100);
         String name;
@@ -105,4 +114,5 @@ public class OmegaController {
         }
         return new OmegaForm(a, b, c, d, name);
     }
+
 }

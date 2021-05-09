@@ -20,7 +20,7 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 /**
- *  The main class for the game Tetris.
+ * The main class for the game Tetris.
  */
 public class OmegaApp extends Application {
     // The variables
@@ -121,24 +121,33 @@ public class OmegaApp extends Application {
                 } );
             }
         };
+        gameSpeed ( fall, task );
+
+    }
+
+    /**
+     * @param timer
+     * @param timerTask
+     */
+    private void gameSpeed(Timer timer, TimerTask timerTask) {
         if (level <= 15 && level >= 5) {
-            fall.schedule ( task, 0, 350 );
+            timer.schedule ( timerTask, 0, 350 );
             nextlevel += 15;
             level++;
         } else if (level > 15 && level <= 20) {
-            fall.schedule ( task, 0, 300 );
+            timer.schedule ( timerTask, 0, 300 );
             nextlevel += 20;
             level++;
         } else if (level > 20 && level <= 40) {
-            fall.schedule ( task, 0, 250 );
+            timer.schedule ( timerTask, 0, 250 );
             nextlevel += 40;
             level++;
         } else if (level > 40 && level <= 100) {
-            fall.schedule ( task, 0, 150 );
+            timer.schedule ( timerTask, 0, 150 );
             nextlevel += 100;
             level++;
         } else {
-            fall.schedule ( task, 0, 400 );
+            timer.schedule ( timerTask, 0, 400 );
             nextlevel += 5;
             level++;
         }
@@ -163,7 +172,6 @@ public class OmegaApp extends Application {
                 case UP:
                     moveTurn ( form );
                     break;
-
             }
         } );
     }
@@ -178,194 +186,214 @@ public class OmegaApp extends Application {
         Rectangle c = form.c;
         Rectangle d = form.d;
         switch (form.getName ()) {
-            case "J":
-                if (f == 1 && clearB ( a, 1, -1 ) && clearB ( c, -1, -1 ) && clearB ( d, -2, -2 )) {
-                    moveRight ( form.a );
-                    moveDown ( form.a );
-                    moveDown ( form.c );
-                    moveLeft ( form.c );
-                    moveDown ( form.d );
-                    moveDown ( form.d );
-                    moveLeft ( form.d );
-                    moveLeft ( form.d );
-                    form.changeForm ();
-                    break;
-                }
-                if (f == 2 && clearB ( a, -1, -1 ) && clearB ( c, -1, 1 ) && clearB ( d, -2, 2 )) {
-                    moveDown ( form.a );
-                    moveLeft ( form.a );
-                    moveLeft ( form.c );
-                    moveUp ( form.c );
-                    moveLeft ( form.d );
-                    moveLeft ( form.d );
-                    moveUp ( form.d );
-                    moveUp ( form.d );
-                    form.changeForm ();
-                    break;
-                }
-                if (f == 3 && clearB ( a, -1, 1 ) && clearB ( c, 1, 1 ) && clearB ( d, 2, 2 )) {
-                    moveLeft ( form.a );
-                    moveUp ( form.a );
-                    moveUp ( form.c );
-                    moveRight ( form.c );
-                    moveUp ( form.d );
-                    moveUp ( form.d );
-                    moveRight ( form.d );
-                    moveRight ( form.d );
-                    form.changeForm ();
-                    break;
-                }
-                if (f == 4 && clearB ( a, 1, 1 ) && clearB ( c, 1, -1 ) && clearB ( d, 2, -2 )) {
-                    moveUp ( form.a );
-                    moveRight ( form.a );
-                    moveRight ( form.c );
-                    moveDown ( form.c );
-                    moveRight ( form.d );
-                    moveRight ( form.d );
-                    moveDown ( form.d );
-                    moveDown ( form.d );
-                    form.changeForm ();
-                    break;
-                }
+        case "J":
+            if (f == 1 && clearB ( a, 1, -1 ) && clearB ( c, -1, -1 ) && clearB ( d, -2, -2 )) {
+                moveRight ( form.a );
+                moveDown ( form.a );
+                moveDown ( form.c );
+                moveLeft ( form.c );
+                moveDown ( form.d );
+                moveDown ( form.d );
+                moveLeft ( form.d );
+                moveLeft ( form.d );
+                form.changeForm ();
                 break;
-            case "L":
-                if (f == 1 && clearB ( a, 1, -1 ) && clearB ( c, 1, 1 ) && clearB ( b, 2, 2 )) {
-                    moveRight ( form.a );
-                    moveDown ( form.a );
-                    moveUp ( form.c );
-                    moveRight ( form.c );
-                    moveUp ( form.b );
-                    moveUp ( form.b );
-                    moveRight ( form.b );
-                    moveRight ( form.b );
-                    form.changeForm ();
-                    break;
-                }
-                if (f == 2 && clearB ( a, -1, -1 ) && clearB ( b, 2, -2 ) && clearB ( c, 1, -1 )) {
-                    moveDown ( form.a );
-                    moveLeft ( form.a );
-                    moveRight ( form.b );
-                    moveRight ( form.b );
-                    moveDown ( form.b );
-                    moveDown ( form.b );
-                    moveRight ( form.c );
-                    moveDown ( form.c );
-                    form.changeForm ();
-                    break;
-                }
-                if (f == 3 && clearB ( a, -1, 1 ) && clearB ( c, -1, -1 ) && clearB ( b, -2, -2 )) {
-                    moveLeft ( form.a );
-                    moveUp ( form.a );
-                    moveDown ( form.c );
-                    moveLeft ( form.c );
-                    moveDown ( form.b );
-                    moveDown ( form.b );
-                    moveLeft ( form.b );
-                    moveLeft ( form.b );
-                    form.changeForm ();
-                    break;
-                }
-                if (f == 4 && clearB ( a, 1, 1 ) && clearB ( b, -2, 2 ) && clearB ( c, -1, 1 )) {
-                    moveUp ( form.a );
-                    moveRight ( form.a );
-                    moveLeft ( form.b );
-                    moveLeft ( form.b );
-                    moveUp ( form.b );
-                    moveUp ( form.b );
-                    moveLeft ( form.c );
-                    moveUp ( form.c );
-                    form.changeForm ();
-                    break;
-                }
+            }
+            if (f == 2 && clearB ( a, -1, -1 ) && clearB ( c, -1, 1 ) && clearB ( d, -2, 2 )) {
+                moveDown ( form.a );
+                moveLeft ( form.a );
+                moveLeft ( form.c );
+                moveUp ( form.c );
+                moveLeft ( form.d );
+                moveLeft ( form.d );
+                moveUp ( form.d );
+                moveUp ( form.d );
+                form.changeForm ();
                 break;
-            case "O":
+            }
+            if (f == 3 && clearB ( a, -1, 1 ) && clearB ( c, 1, 1 ) && clearB ( d, 2, 2 )) {
+                moveLeft ( form.a );
+                moveUp ( form.a );
+                moveUp ( form.c );
+                moveRight ( form.c );
+                moveUp ( form.d );
+                moveUp ( form.d );
+                moveRight ( form.d );
+                moveRight ( form.d );
+                form.changeForm ();
                 break;
-            case "S":
-                if (f == 1 && clearB ( a, -1, -1 ) && clearB ( c, -1, 1 ) && clearB ( d, 0, 2 )) {
-                    moveDown ( form.a );
-                    moveLeft ( form.a );
-                    moveLeft ( form.c );
-                    moveUp ( form.c );
-                    moveUp ( form.d );
-                    moveUp ( form.d );
-                    form.changeForm ();
-                    break;
-                }
-                if (f == 2 && clearB ( a, 1, 1 ) && clearB ( c, 1, -1 ) && clearB ( d, 0, -2 )) {
-                    moveUp ( form.a );
-                    moveRight ( form.a );
-                    moveRight ( form.c );
-                    moveDown ( form.c );
-                    moveDown ( form.d );
-                    moveDown ( form.d );
-                    form.changeForm ();
-                    break;
-                }
-                if (f == 3 && clearB ( a, -1, -1 ) && clearB ( c, -1, 1 ) && clearB ( d, 0, 2 )) {
-                    moveDown ( form.a );
-                    moveLeft ( form.a );
-                    moveLeft ( form.c );
-                    moveUp ( form.c );
-                    moveUp ( form.d );
-                    moveUp ( form.d );
-                    form.changeForm ();
-                    break;
-                }
-                if (f == 4 && clearB ( a, 1, 1 ) && clearB ( c, 1, -1 ) && clearB ( d, 0, -2 )) {
-                    moveUp ( form.a );
-                    moveRight ( form.a );
-                    moveRight ( form.c );
-                    moveDown ( form.c );
-                    moveDown ( form.d );
-                    moveDown ( form.d );
-                    form.changeForm ();
-                    break;
-                }
+            }
+            if (f == 4 && clearB ( a, 1, 1 ) && clearB ( c, 1, -1 ) && clearB ( d, 2, -2 )) {
+                moveUp ( form.a );
+                moveRight ( form.a );
+                moveRight ( form.c );
+                moveDown ( form.c );
+                moveRight ( form.d );
+                moveRight ( form.d );
+                moveDown ( form.d );
+                moveDown ( form.d );
+                form.changeForm ();
                 break;
-            case "T":
-                if (f == 1 && clearB ( a, 1, 1 ) && clearB ( d, -1, -1 ) && clearB ( c, -1, 1 )) {
-                    moveUp ( form.a );
-                    moveRight ( form.a );
-                    moveDown ( form.d );
-                    moveLeft ( form.d );
-                    moveLeft ( form.c );
-                    moveUp ( form.c );
-                    form.changeForm ();
-                    break;
-                }
-                if (f == 2 && clearB ( a, 1, -1 ) && clearB ( d, -1, 1 ) && clearB ( c, 1, 1 )) {
-                    moveRight ( form.a );
-                    moveDown ( form.a );
-                    moveLeft ( form.d );
-                    moveUp ( form.d );
-                    moveUp ( form.c );
-                    moveRight ( form.c );
-                    form.changeForm ();
-                    break;
-                }
-                if (f == 3 && clearB ( a, -1, -1 ) && clearB ( d, 1, 1 ) && clearB ( c, 1, -1 )) {
-                    moveDown ( form.a );
-                    moveLeft ( form.a );
-                    moveUp ( form.d );
-                    moveRight ( form.d );
-                    moveRight ( form.c );
-                    moveDown ( form.c );
-                    form.changeForm ();
-                    break;
-                }
-                if (f == 4 && clearB ( a, -1, 1 ) && clearB ( d, 1, -1 ) && clearB ( c, -1, -1 )) {
-                    moveLeft ( form.a );
-                    moveUp ( form.a );
-                    moveRight ( form.d );
-                    moveDown ( form.d );
-                    moveDown ( form.c );
-                    moveLeft ( form.c );
-                    form.changeForm ();
-                    break;
-                }
+            }
+            break;
+        case "L":
+            if (f == 1 && clearB ( a, 1, -1 ) && clearB ( c, 1, 1 ) && clearB ( b, 2, 2 )) {
+                moveRight ( form.a );
+                moveDown ( form.a );
+                moveUp ( form.c );
+                moveRight ( form.c );
+                moveUp ( form.b );
+                moveUp ( form.b );
+                moveRight ( form.b );
+                moveRight ( form.b );
+                form.changeForm ();
                 break;
-            case "Z":
-                if (f == 1 && clearB ( b, 1, 1 ) && clearB ( c, -1, 1 ) && clearB ( d, -2, 0 )) {
+            }
+            if (f == 2 && clearB ( a, -1, -1 ) && clearB ( b, 2, -2 ) && clearB ( c, 1, -1 )) {
+                moveDown ( form.a );
+                moveLeft ( form.a );
+                moveRight ( form.b );
+                moveRight ( form.b );
+                moveDown ( form.b );
+                moveDown ( form.b );
+                moveRight ( form.c );
+                moveDown ( form.c );
+                form.changeForm ();
+                break;
+            }
+            if (f == 3 && clearB ( a, -1, 1 ) && clearB ( c, -1, -1 ) && clearB ( b, -2, -2 )) {
+                moveLeft ( form.a );
+                moveUp ( form.a );
+                moveDown ( form.c );
+                moveLeft ( form.c );
+                moveDown ( form.b );
+                moveDown ( form.b );
+                moveLeft ( form.b );
+                moveLeft ( form.b );
+                form.changeForm ();
+                break;
+            }
+            if (f == 4 && clearB ( a, 1, 1 ) && clearB ( b, -2, 2 ) && clearB ( c, -1, 1 )) {
+                moveUp ( form.a );
+                moveRight ( form.a );
+                moveLeft ( form.b );
+                moveLeft ( form.b );
+                moveUp ( form.b );
+                moveUp ( form.b );
+                moveLeft ( form.c );
+                moveUp ( form.c );
+                form.changeForm ();
+                break;
+            }
+            break;
+        case "O":
+            break;
+        case "S":
+            if (f == 1 && clearB ( a, -1, -1 ) && clearB ( c, -1, 1 ) && clearB ( d, 0, 2 )) {
+                moveDown ( form.a );
+                moveLeft ( form.a );
+                moveLeft ( form.c );
+                moveUp ( form.c );
+                moveUp ( form.d );
+                moveUp ( form.d );
+                form.changeForm ();
+                break;
+            }
+            if (f == 2 && clearB ( a, 1, 1 ) && clearB ( c, 1, -1 ) && clearB ( d, 0, -2 )) {
+                moveUp ( form.a );
+                moveRight ( form.a );
+                moveRight ( form.c );
+                moveDown ( form.c );
+                moveDown ( form.d );
+                moveDown ( form.d );
+                form.changeForm ();
+                break;
+            }
+            if (f == 3 && clearB ( a, -1, -1 ) && clearB ( c, -1, 1 ) && clearB ( d, 0, 2 )) {
+                moveDown ( form.a );
+                moveLeft ( form.a );
+                moveLeft ( form.c );
+                moveUp ( form.c );
+                moveUp ( form.d );
+                moveUp ( form.d );
+                form.changeForm ();
+                break;
+            }
+            if (f == 4 && clearB ( a, 1, 1 ) && clearB ( c, 1, -1 ) && clearB ( d, 0, -2 )) {
+                moveUp ( form.a );
+                moveRight ( form.a );
+                moveRight ( form.c );
+                moveDown ( form.c );
+                moveDown ( form.d );
+                moveDown ( form.d );
+                form.changeForm ();
+                break;
+            }
+            break;
+        case "T":
+            if (f == 1 && clearB ( a, 1, 1 ) && clearB ( d, -1, -1 ) && clearB ( c, -1, 1 )) {
+                moveUp ( form.a );
+                moveRight ( form.a );
+                moveDown ( form.d );
+                moveLeft ( form.d );
+                moveLeft ( form.c );
+                moveUp ( form.c );
+                form.changeForm ();
+                break;
+            }
+            if (f == 2 && clearB ( a, 1, -1 ) && clearB ( d, -1, 1 ) && clearB ( c, 1, 1 )) {
+                moveRight ( form.a );
+                moveDown ( form.a );
+                moveLeft ( form.d );
+                moveUp ( form.d );
+                moveUp ( form.c );
+                moveRight ( form.c );
+                form.changeForm ();
+                break;
+            }
+            if (f == 3 && clearB ( a, -1, -1 ) && clearB ( d, 1, 1 ) && clearB ( c, 1, -1 )) {
+                moveDown ( form.a );
+                moveLeft ( form.a );
+                moveUp ( form.d );
+                moveRight ( form.d );
+                moveRight ( form.c );
+                moveDown ( form.c );
+                form.changeForm ();
+                break;
+            }
+            if (f == 4 && clearB ( a, -1, 1 ) && clearB ( d, 1, -1 ) && clearB ( c, -1, -1 )) {
+                moveLeft ( form.a );
+                moveUp ( form.a );
+                moveRight ( form.d );
+                moveDown ( form.d );
+                moveDown ( form.c );
+                moveLeft ( form.c );
+                form.changeForm ();
+                break;
+            }
+                break;
+        case "Z":
+            if (f == 1 && clearB ( b, 1, 1 ) && clearB ( c, -1, 1 ) && clearB ( d, -2, 0 )) {
+                moveUp ( form.b );
+                moveRight ( form.b );
+                moveLeft ( form.c );
+                moveUp ( form.c );
+                moveLeft ( form.d );
+                moveLeft ( form.d );
+                form.changeForm ();
+                break;
+            }
+            if (f == 2 && clearB ( b, -1, -1 ) && clearB ( c, 1, -1 ) && clearB ( d, 2, 0 )) {
+                moveDown ( form.b );
+                moveLeft ( form.b );
+                moveRight ( form.c );
+                moveDown ( form.c );
+                moveRight ( form.d );
+                moveRight ( form.d );
+                form.changeForm ();
+                break;
+            }
+            if (f == 3 && clearB ( b, 1, 1 ) && clearB ( c, -1, 1 ) && clearB ( d, -2, 0 )) {
                     moveUp ( form.b );
                     moveRight ( form.b );
                     moveLeft ( form.c );
@@ -374,88 +402,68 @@ public class OmegaApp extends Application {
                     moveLeft ( form.d );
                     form.changeForm ();
                     break;
-                }
-                if (f == 2 && clearB ( b, -1, -1 ) && clearB ( c, 1, -1 ) && clearB ( d, 2, 0 )) {
-                    moveDown ( form.b );
-                    moveLeft ( form.b );
-                    moveRight ( form.c );
-                    moveDown ( form.c );
-                    moveRight ( form.d );
-                    moveRight ( form.d );
-                    form.changeForm ();
-                    break;
-                }
-                if (f == 3 && clearB ( b, 1, 1 ) && clearB ( c, -1, 1 ) && clearB ( d, -2, 0 )) {
-                    moveUp ( form.b );
-                    moveRight ( form.b );
-                    moveLeft ( form.c );
-                    moveUp ( form.c );
-                    moveLeft ( form.d );
-                    moveLeft ( form.d );
-                    form.changeForm ();
-                    break;
-                }
-                if (f == 4 && clearB ( b, -1, -1 ) && clearB ( c, 1, -1 ) && clearB ( d, 2, 0 )) {
-                    moveDown ( form.b );
-                    moveLeft ( form.b );
-                    moveRight ( form.c );
-                    moveDown ( form.c );
-                    moveRight ( form.d );
-                    moveRight ( form.d );
-                    form.changeForm ();
-                    break;
-                }
+            }
+            if (f == 4 && clearB ( b, -1, -1 ) && clearB ( c, 1, -1 ) && clearB ( d, 2, 0 )) {
+                moveDown ( form.b );
+                moveLeft ( form.b );
+                moveRight ( form.c );
+                moveDown ( form.c );
+                moveRight ( form.d );
+                moveRight ( form.d );
+                form.changeForm ();
                 break;
-            case "I":
-                if (f == 1 && clearB ( a, 2, 2 ) && clearB ( b, 1, 1 ) && clearB ( d, -1, -1 )) {
-                    moveUp ( form.a );
-                    moveUp ( form.a );
-                    moveRight ( form.a );
-                    moveRight ( form.a );
-                    moveUp ( form.b );
-                    moveRight ( form.b );
-                    moveDown ( form.d );
-                    moveLeft ( form.d );
-                    form.changeForm ();
-                    break;
-                }
-                if (f == 2 && clearB ( a, -2, -2 ) && clearB ( b, -1, -1 ) && clearB ( d, 1, 1 )) {
-                    moveDown ( form.a );
-                    moveDown ( form.a );
-                    moveLeft ( form.a );
-                    moveLeft ( form.a );
-                    moveDown ( form.b );
-                    moveLeft ( form.b );
-                    moveUp ( form.d );
-                    moveRight ( form.d );
-                    form.changeForm ();
-                    break;
-                }
-                if (f == 3 && clearB ( a, 2, 2 ) && clearB ( b, 1, 1 ) && clearB ( d, -1, -1 )) {
-                    moveUp ( form.a );
-                    moveUp ( form.a );
-                    moveRight ( form.a );
-                    moveRight ( form.a );
-                    moveUp ( form.b );
-                    moveRight ( form.b );
-                    moveDown ( form.d );
-                    moveLeft ( form.d );
-                    form.changeForm ();
-                    break;
-                }
-                if (f == 4 && clearB ( a, -2, -2 ) && clearB ( b, -1, -1 ) && clearB ( d, 1, 1 )) {
-                    moveDown ( form.a );
-                    moveDown ( form.a );
-                    moveLeft ( form.a );
-                    moveLeft ( form.a );
-                    moveDown ( form.b );
-                    moveLeft ( form.b );
-                    moveUp ( form.d );
-                    moveRight ( form.d );
-                    form.changeForm ();
-                    break;
-                }
+            }
                 break;
+        case "I":
+             if (f == 1 && clearB ( a, 2, 2 ) && clearB ( b, 1, 1 ) && clearB ( d, -1, -1 )) {
+                 moveUp ( form.a );
+                 moveUp ( form.a );
+                 moveRight ( form.a );
+                 moveRight ( form.a );
+                 moveUp ( form.b );
+                 moveRight ( form.b );
+                 moveDown ( form.d );
+                 moveLeft ( form.d );
+                 form.changeForm ();
+                 break;
+             }
+             if (f == 2 && clearB ( a, -2, -2 ) && clearB ( b, -1, -1 ) && clearB ( d, 1, 1 )) {
+                 moveDown ( form.a );
+                 moveDown ( form.a );
+                 moveLeft ( form.a );
+                 moveLeft ( form.a );
+                 moveDown ( form.b );
+                 moveLeft ( form.b );
+                 moveUp ( form.d );
+                 moveRight ( form.d );
+                 form.changeForm ();
+                 break;
+             }
+             if (f == 3 && clearB ( a, 2, 2 ) && clearB ( b, 1, 1 ) && clearB ( d, -1, -1 )) {
+                 moveUp ( form.a );
+                 moveUp ( form.a );
+                 moveRight ( form.a );
+                 moveRight ( form.a );
+                 moveUp ( form.b );
+                 moveRight ( form.b );
+                 moveDown ( form.d );
+                 moveLeft ( form.d );
+                 form.changeForm ();
+                 break;
+             }
+             if (f == 4 && clearB ( a, -2, -2 ) && clearB ( b, -1, -1 ) && clearB ( d, 1, 1 )) {
+                 moveDown ( form.a );
+                 moveDown ( form.a );
+                 moveLeft ( form.a );
+                 moveLeft ( form.a );
+                 moveDown ( form.b );
+                 moveLeft ( form.b );
+                 moveUp ( form.d );
+                 moveRight ( form.d );
+                 form.changeForm ();
+                 break;
+             }
+             break;
         }
     }
 
@@ -485,8 +493,6 @@ public class OmegaApp extends Application {
                 }
                 score += 100;
                 linesNo++;
-
-
                 for (Node node : shape) {
                     Rectangle a = (Rectangle) node;
                     if (a.getY () == lines.get ( 0 ) * SIZE) {
@@ -495,7 +501,6 @@ public class OmegaApp extends Application {
                     } else
                         newShape.add ( node );
                 }
-
                 for (Node node : newShape) {
                     Rectangle a = (Rectangle) node;
                     if (a.getY () < lines.get ( 0 ) * SIZE) {
@@ -515,6 +520,7 @@ public class OmegaApp extends Application {
                     try {
                         BOARD[(int) a.getX () / SIZE][(int) a.getY () / SIZE] = 1;
                     } catch ( ArrayIndexOutOfBoundsException e ) {
+
                     }
                 }
                 shape.clear ();
@@ -525,45 +531,48 @@ public class OmegaApp extends Application {
      * @param rect
      */
     private void moveDown(Rectangle rect) {
-        if (rect.getY () + MOVE < YMAX)
+        if (rect.getY () + MOVE < YMAX) {
             rect.setY ( rect.getY () + MOVE );
-
+        }
     }
 
     /**
      * @param rect
      */
     private void moveRight(Rectangle rect) {
-        if (rect.getX () + MOVE <= XMAX - SIZE)
+        if (rect.getX () + MOVE <= XMAX - SIZE) {
             rect.setX ( rect.getX () + MOVE );
+        }
     }
 
     /**
      * @param rect
      */
     private void moveLeft(Rectangle rect) {
-        if (rect.getX () - MOVE >= 0)
-            rect.setX ( rect.getX () - MOVE );
+        if (rect.getX () - MOVE >= 0){
+            rect.setX ( rect.getX () - MOVE ); }
     }
 
     /**
      * @param rect
      */
     private void moveUp(Rectangle rect) {
-        if (rect.getY () - MOVE > 0)
+        if (rect.getY () - MOVE > 0) {
             rect.setY ( rect.getY () - MOVE );
+        }
     }
 
     /**
      * @param form
      */
     private void gravity(OmegaForm form) {
-        if (form.a.getY () == YMAX - SIZE || form.b.getY () == YMAX - SIZE || form.c.getY () == YMAX - SIZE
-                || form.d.getY () == YMAX - SIZE || moveA ( form ) || moveB ( form ) || moveC ( form ) || moveD ( form )) {
-            BOARD[(int) form.a.getX () / SIZE][(int) form.a.getY () / SIZE] = 1;
-            BOARD[(int) form.b.getX () / SIZE][(int) form.b.getY () / SIZE] = 1;
-            BOARD[(int) form.c.getX () / SIZE][(int) form.c.getY () / SIZE] = 1;
-            BOARD[(int) form.d.getX () / SIZE][(int) form.d.getY () / SIZE] = 1;
+        if (form.a.getY()==YMAX-SIZE||form.b.getY()==YMAX-SIZE||form.c.getY()== YMAX - SIZE
+                ||form.d.getY() == YMAX - SIZE
+                ||moveA(form)||moveB(form)||moveC(form)||moveD(form)) {
+            BOARD[(int)form.a.getX()/ SIZE][(int) form.a.getY() / SIZE] = 1;
+            BOARD[(int)form.b.getX()/ SIZE][(int) form.b.getY() / SIZE] = 1;
+            BOARD[(int)form.c.getX()/ SIZE][(int) form.c.getY () / SIZE] = 1;
+            BOARD[(int)form.d.getX() / SIZE][(int) form.d.getY () / SIZE] = 1;
             removeRows ( group );
 
             OmegaForm a = nextObj;
@@ -593,7 +602,7 @@ public class OmegaApp extends Application {
      * @return
      */
     private boolean moveA(OmegaForm form) {
-        return (BOARD[(int) form.a.getX () / SIZE][((int) form.a.getY () / SIZE) + 1] == 1);
+        return (BOARD[(int)form.a.getX()/SIZE][((int)form.a.getY()/SIZE)+1]==1);
     }
 
     /**
@@ -601,7 +610,7 @@ public class OmegaApp extends Application {
      * @return
      */
     private boolean moveB(OmegaForm form) {
-        return (BOARD[(int) form.b.getX () / SIZE][((int) form.b.getY () / SIZE) + 1] == 1);
+        return (BOARD[(int)form.b.getX()/SIZE][((int)form.b.getY()/SIZE)+1]==1);
     }
 
     /**
@@ -609,7 +618,7 @@ public class OmegaApp extends Application {
      * @return
      */
     private boolean moveC(OmegaForm form) {
-        return (BOARD[(int) form.c.getX () / SIZE][((int) form.c.getY () / SIZE) + 1] == 1);
+        return (BOARD[(int)form.c.getX()/SIZE][((int)form.c.getY()/SIZE)+1]==1);
     }
 
     /**
@@ -617,7 +626,7 @@ public class OmegaApp extends Application {
      * @return
      */
     private boolean moveD(OmegaForm form) {
-        return (BOARD[(int) form.d.getX () / SIZE][((int) form.d.getY () / SIZE) + 1] == 1);
+        return (BOARD[(int) form.d.getX ()/SIZE][((int)form.d.getY()/SIZE)+1]==1);
     }
 
     /**

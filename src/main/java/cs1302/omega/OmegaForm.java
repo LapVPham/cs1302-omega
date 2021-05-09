@@ -2,6 +2,9 @@ package cs1302.omega;
 
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
+import javafx.scene.text.Text;
 
 public class OmegaForm {
     Rectangle a;
@@ -11,7 +14,36 @@ public class OmegaForm {
     Color color;
     private String name;
     public int form = 1;
+    Text lines ;
+    Text leveltext ;
+    Text scoretext ;
+    Text nextLevelText;
 
+    private void textLabels(){
+
+        this.scoretext = new Text ( "Score: " );
+        scoretext.setFont ( Font.font ( "Verdana", 20 ) );
+
+        this.lines = new Text ( "Lines: " );
+        lines.setFont ( Font.font ( "Verdana", 20 ) );
+
+        lines.setFill ( Color.GREEN );
+        this.leveltext = new Text ( "Level: " );
+        leveltext.setFont ( Font.font ( "Time New Roman", 30 ) );
+
+        leveltext.setFill ( Color.FIREBRICK );
+        this.nextLevelText = new Text ();
+        nextLevelText.setFont ( Font.font ( "Time New Roman", FontWeight.BOLD, 14 ) );
+
+        nextLevelText.setFill ( Color.MEDIUMPURPLE );
+    }
+
+    /**
+     * @param a
+     * @param b
+     * @param c
+     * @param d
+     */
     public OmegaForm(Rectangle a, Rectangle b, Rectangle c, Rectangle d) {
         this.a = a;
         this.b = b;
@@ -19,6 +51,13 @@ public class OmegaForm {
         this.d = d;
     }
 
+    /**
+     * @param a
+     * @param b
+     * @param c
+     * @param d
+     * @param name
+     */
     public OmegaForm(Rectangle a, Rectangle b, Rectangle c, Rectangle d, String name) {
         this.a = a;
         this.b = b;
@@ -57,11 +96,18 @@ public class OmegaForm {
     }
 
 
+
+    /**
+     * @return
+     */
     public String getName() {
         return name;
     }
 
 
+    /**
+     *
+     */
     public void changeForm() {
         if (form != 4) {
             form++;
