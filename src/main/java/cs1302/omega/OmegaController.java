@@ -1,4 +1,4 @@
-package omega;
+package cs1302.omega;
 import javafx.scene.shape.Rectangle;
 
 public class OmegaController {
